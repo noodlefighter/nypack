@@ -45,9 +45,16 @@ USR_INCS += $(PRJDIR)/inc
 USR_SRCS += $(wildcard $(SRCDIR)/*.c)
 
 # test
-SUBDIR_TEST = $(PRJDIR)/test 
+SUBDIR_TEST = $(PRJDIR)/test
 VPATH    += $(SUBDIR_TEST)
+USR_INCS += $(SUBDIR_TEST)
 USR_SRCS += nypack_test.c
+
+SUBDIR_CMOCKA = $(PRJDIR)/test/cmocka
+VPATH    += $(SUBDIR_CMOCKA)/src
+USR_INCS += $(SUBDIR_CMOCKA)/include
+USR_SRCS += cmocka.c
+USR_DEFS  += -DHAVE_SIGNAL_H -DHAVE_MALLOC_H
 
 # include common
 include common.mk
