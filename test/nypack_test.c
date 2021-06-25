@@ -35,7 +35,7 @@ static void test_nypack_parser(void **state)
             assert_true(parser.payload_len == PAYLOAD_LEN);
             assert_true(0 == memcmp(parser.payload, payload, PAYLOAD_LEN));
             assert_int_equal(parser.type, PAYLOAD_TYPE);
-            break;
+            return;
         case NYPACK_PARSER_EVT_NO:
             break;
         default: // error
@@ -44,6 +44,7 @@ static void test_nypack_parser(void **state)
             break;
         }
     }
+    fail();
 }
 
 static void test_nypack_generate(void **state)
@@ -74,6 +75,7 @@ int main(void) {
     int ofst = 0;
     memcpy(nypack_data, data_without_crc, sizeof(data_without_crc));
     uint16_t crc = crc_16bits_compute(data_without_crc, sizeof(data_without_crc));
+    ofst = sizeof(data_without_crc);
     nypack_data[ofst++] = crc & 0xFF;
     nypack_data[ofst++] = (crc >> 8) & 0xFF;
 

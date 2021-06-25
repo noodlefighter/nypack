@@ -44,7 +44,7 @@ enum {
 	NYPACK_DATA_OFFSET = 5,
 };
 #define NYPACK_PACKET_SIZE(payload_len)	  (NYPACK_DATA_OFFSET + payload_len + 2)
-#define NYPACK_CRC_OFFSET(packet_len)     (packet_len - 3)
+#define NYPACK_CRC_OFFSET(packet_len)     (packet_len - 2)
 #define NYPACK_PAYLOAD_SIZE(packet_len)	  (packet_len - NYPACK_DATA_OFFSET - 2)
 
 static inline
